@@ -67,20 +67,23 @@ const images = [
 const galleryContainer = document.querySelector('.gallery')
 
 const galleryMarkup = images
-    .map(({ preview, original, description }) =>
-    `<li class="gallery-item">
-    <a class="gallery-link" href="large-image.jpg">
+  .map(
+    ({ preview, original, description }) =>
+      `<li class="gallery-item">
+    <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
     </a>
     </li>`
 )
     .join('')
+galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup)
 galleryContainer.addEventListener('click', onGalleryClick)
+
 function onGalleryClick(event) {
     event.preventDefault()
     const clickedElement = event.target
